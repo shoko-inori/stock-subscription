@@ -1,13 +1,18 @@
-{% extends 'base.html' %}
-
-{% block title %}Register{% endblock %}
-
-{% block contents %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register - Chenhao's Stock Price Subscription</title>
+</head>
+<body>
     <h1>Create Your Account</h1>
     <form method="POST" class="form-group">
+        {% load crispy_forms_tags %}
         {% csrf_token %}
-        {{register_form}}
+        {{ register_form|crispy }}
         <button type="submit">Register</button>
     </form>
-{% endblock %}
+</body>
+</html>
+
 
