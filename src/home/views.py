@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import SubscriptionForm
 from .models import Subscription
 
@@ -18,6 +18,8 @@ def subscribe_view(request):
             sub = Subscription(ticker=ticker, email=email)
             sub.save()
             request.user.subscription.add(sub)
+
+            return redirect("/")
 
     context = {
         "subscription_form": subscription_form
