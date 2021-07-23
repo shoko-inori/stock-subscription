@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Stock Price Subscription{% endblock %} - Chenhao's Stock Price Subscription</title>
+    <style type="text/css">
+        .navbar ul {
+            list-style-type: none;
+            height: 35px;
+            background-color: #4ac1f7;
+            margin: 0;
+        }
+
+        .navbar li {
+            float: left;
+            display: inline-block;
+        }
+
+        .navbar li a {
+            display: block;
+            padding: 8px;
+        }
+
+        .navbar a:hover {
+            background-color: #81d4fa;
+        }
+
+        .main {
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a>Subscribe</a></li>
+            <li style="float:right"><a>Log Out</a></li>
+        </ul>
+    </div>
+    {% block contents %}
+    <p>
+        If you are seeing this statement, report bug to
+        <a href="mailto:frank.gong.1006@hotmail.com">Chenhao</a>. Thanks!
+    </p>
+    <p>You do not have any subscriptions. <a href="subscribe/">Subscribe</a> to a new stock ticker now. </p>
+    {% endblock %}
+
+
+</body>
+</html>
