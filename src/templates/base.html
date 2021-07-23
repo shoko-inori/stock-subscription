@@ -14,6 +14,7 @@
         .navbar li {
             float: left;
             display: inline-block;
+            text-align: center;
         }
 
         .navbar li a {
@@ -21,7 +22,7 @@
             padding: 8px;
         }
 
-        .navbar a:hover {
+        .navbar-button:hover {
             background-color: #81d4fa;
         }
 
@@ -33,9 +34,10 @@
 <body>
     <div class="navbar">
         <ul>
-            <li><a href="">Home</a></li>
-            <li><a>Subscribe</a></li>
-            <li style="float:right"><a href="/logout">Log Out</a></li>
+            <li><a>Chenhao's Stock Price Subscription</a></li>
+            <li><a class="navbar-button" href="/">Home</a></li>
+            <li><a class="navbar-button" href="/subscribe">Subscribe</a></li>
+            <li style="float:right"><a class="navbar-button" href="/logout">Log Out</a></li>
         </ul>
     </div>
     {% block contents %}
