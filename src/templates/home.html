@@ -16,7 +16,7 @@
                 {% for sub in subscriptions %}
                     <tr>
                         <td>{{ sub.ticker }}</td>
-                        <td>{{ sub.current_price }}</td>
+                        <td>${{ sub.current_price }}</td>
                         <td>{{ sub.email }}</td>
                         <td><a>Send Now</a> | <a href="{{ sub.id }}/unsubscribe/">Unsubscribe</a></td>
                     </tr>
