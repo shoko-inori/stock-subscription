@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Unsubscribe{% endblock %}
+
+{% block contents %}
+  <form action='.' method="POST">
+    {% csrf_token %}
+    <h1>Confirm unsubscription</h1>
+    <h3>Are you sure you want to unsubscribe from the stock ticker "{{ sub.ticker }}"?</h3>
+    <input type="submit" value="Yes, unsubscribe"/> <a href="../">No, go back</a>
+  </form>
+{% endblock %}

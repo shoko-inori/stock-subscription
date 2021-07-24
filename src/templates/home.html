@@ -18,7 +18,7 @@
                         <td>{{ sub.ticker }}</td>
                         <td>{{ sub.current_price }}</td>
                         <td>{{ sub.email }}</td>
-                        <td><a>Send Now</a> | <a>Unsubscribe</a></td>
+                        <td><a>Send Now</a> | <a href="{{ sub.id }}/unsubscribe/">Unsubscribe</a></td>
                     </tr>
                 {% endfor %}
             </tbody>

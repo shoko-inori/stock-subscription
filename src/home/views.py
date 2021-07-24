@@ -1,13 +1,18 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import SubscriptionForm
 from .models import Subscription
 import yfinance as yf
 
 # Create your views here.
 def home_view(request):
+    # Redirect to login page for unauthorized users
+    if not request.user.is_authenticated:
+        return redirect("login/")
+
     context = {"subscriptions": []}
     for sub in request.user.subscription.all():
         context["subscriptions"].append({
+            "id": sub.id,
             "ticker": sub.ticker,
             "current_price": yf.Ticker(sub.ticker).info["regularMarketPrice"],
             "email": sub.email
@@ -21,7 +26,7 @@ def subscribe_view(request):
         subscription_form = SubscriptionForm(request.POST)
         if subscription_form.is_valid():
             ticker, email = \
-                subscription_form.cleaned_data["ticker"], subscription_form.cleaned_data["email"]
+                subscription_form.cleaned_data["ticker"].upper(), subscription_form.cleaned_data["email"]
             sub = Subscription(ticker=ticker, email=email)
             sub.save()
             request.user.subscription.add(sub)
@@ -32,3 +37,14 @@ def subscribe_view(request):
         "subscription_form": subscription_form
     }
     return render(request, "subscribe.html", context)
+
+
+def delete_view(request, sub_id):
+    sub = get_object_or_404(Subscription, id=sub_id)
+    if request.method == "POST":
+        sub.delete()
+        return redirect("/")
+    context = {
+        "sub": sub
+    }
+    return render(request, "delete.html", context)
