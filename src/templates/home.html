@@ -2,5 +2,28 @@
 
 {% block title %}Home{% endblock %}
 
-<!--{ % block contents % }-->
-<!--{ % endblock % }-->
+{% block contents %}
+    {% if user.subscription.all.count > 0 %}
+        <h1>My subscriptions</h1>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Stock Ticker</th>
+                    <th>Current Price</th>
+                    <th>Email To</th>
+                    <th>Actions</th>
+                </tr>
+                {% for sub in subscriptions %}
+                    <tr>
+                        <td>{{ sub.ticker }}</td>
+                        <td>${{ sub.current_price }}</td>
+                        <td>{{ sub.email }}</td>
+                        <td><a>Send Now</a> | <a href="{{ sub.id }}/unsubscribe/">Unsubscribe</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>You do not have any subscriptions. <a href="subscribe/">Subscribe</a> to a new stock ticker now. </p>
+    {% endif %}
+{% endblock %}
