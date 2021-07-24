@@ -40,7 +40,6 @@ INSTALLED_APPS = [
 
     # Custom apps
     'register',
-    'subscribe',
     'home',
 
     # Third party apps
