@@ -1,8 +1,9 @@
 from celery import shared_task
-from stocksubscription.celery import app
+
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
+
 from home.models import Subscription
 import yfinance as yf
 
@@ -34,7 +35,7 @@ def send_email_task(mailto, tickers):
     return None
 
 
-@app.task(name='send_digest')
+@shared_task()
 def send_digest():
     all_sub = Subscription.objects.all()
     ticker_string = ""

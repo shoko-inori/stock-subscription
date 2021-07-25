@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
 from .tasks import send_email_task
 from home.models import Subscription
 import yfinance as yf
