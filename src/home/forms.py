@@ -8,6 +8,7 @@ class SubscriptionForm(forms.Form):
 
     def clean_ticker(self):
         ticker = self.cleaned_data.get("ticker")
+        # All API to check if the ticker is valid
         if yf.Ticker(ticker).info["regularMarketPrice"]:
             return ticker
         else:
