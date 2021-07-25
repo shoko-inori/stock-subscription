@@ -13,10 +13,10 @@ def home_view(request):
 
     # Compose and make API call to fetch prices
     all_sub = request.user.subscription.all()
-    sub_string = ""
+    ticker_string = ""
     for sub in all_sub:
-        sub_string = "{} {}".format(sub_string, sub.ticker)
-    yf_response = yf.Tickers(sub_string.strip())
+        ticker_string = "{} {}".format(ticker_string, sub.ticker)
+    yf_response = yf.Tickers(ticker_string.strip())
 
     # Render the subscription list table
     for sub in all_sub:
