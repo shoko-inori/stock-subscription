@@ -132,7 +132,24 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Crispy bootstrap
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+# User authorization redirects
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/login"
+
+# Celery setup
+CELERY_BROKER_URL = \
+    'redis://:p0f3edb8dddcb982d2d1228fc093628e12f3900689c36404a1d21544bb85e0681@ec2-54-205-197-154.compute-1.amazonaws.com:24870'
+
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
+# Email send credentials
+EMAIL_HOST = 'smtp-mail.outlook.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'chenhao.stock-update@outlook.com'
+EMAIL_PASSWORD = 'gEqzuq-damby1-dokdon'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = True
