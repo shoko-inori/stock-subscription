@@ -50,6 +50,7 @@ def subscribe_view(request):
 
 def delete_view(request, sub_id):
     sub = get_object_or_404(Subscription, id=sub_id)
+    # Delete comfirmation
     if request.method == "POST":
         sub.delete()
         return redirect("/")
