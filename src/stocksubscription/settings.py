@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
+import ssl
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
 
     # Third party apps
     'crispy_forms',
+    'django_celery_beat'
 ]
 
 MIDDLEWARE = [
@@ -130,6 +132,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -145,12 +148,17 @@ LOGOUT_REDIRECT_URL = "/login"
 
 # Celery setup
 CELERY_BROKER_URL = \
-    'redis://:p0f3edb8dddcb982d2d1228fc093628e12f3900689c36404a1d21544bb85e0681@ec2-54-205-197-154.compute-1.amazonaws.com:24870'
+    'rediss://:p0f3edb8dddcb982d2d1228fc093628e12f3900689c36404a1d21544bb85e0681@ec2-54-205-197-154.compute-1.amazonaws.com:24870'
+CELERY_RESULT_BACKEND = \
+    'rediss://:p0f3edb8dddcb982d2d1228fc093628e12f3900689c36404a1d21544bb85e0681@ec2-54-205-197-154.compute-1.amazonaws.com:24870'
 
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 
 CELERY_TIMEZONE = 'US/Eastern'
+
+BROKER_USE_SSL = {'ssl_cert_reqs': ssl.CERT_NONE}
+CELERY_REDIS_BACKEND_USE_SSL = {'ssl_cert_reqs': ssl.CERT_NONE}
 
 # AWS Simple Email Send credentials
 EMAIL_BACKEND = 'django_ses.SESBackend'
