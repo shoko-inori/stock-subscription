@@ -32,3 +32,29 @@ def send_email_task(mailto, tickers):
     email.send()
 
     return None
+
+
+@app.task(name='send_digest')
+def send_digest():
+    all_sub = Subscription.objects.all()
+    ticker_string = ""
+    email_dict = {}
+    for sub in all_sub:
+        # Compose the parameter for the API call to fetch prices
+        ticker_string = "{} {}".format(ticker_string, sub.ticker)
+        # Categorize the subscriptions based on the mailto email address
+        if sub.email in email_dict:
+            email_dict[sub.email][sub.ticker] = 0
+        else:
+            email_dict[sub.email] = {sub.ticker: 0}
+
+    # Make the API call and feed the fetched prices to the categorized dict
+    yf_response = yf.Tickers(ticker_string.strip())
+    for sub in all_sub:
+        email_dict[sub.email][sub.ticker] = yf_response.tickers[sub.ticker].info["regularMarketPrice"]
+
+    # Send the messages
+    for mailto in email_dict:
+        send_email_task(mailto, email_dict[mailto])
+
+    return None
