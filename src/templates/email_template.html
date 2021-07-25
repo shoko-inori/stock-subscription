@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Latest stock prices from your subscription - Chenhao's Stock Price Subscription</title>
+    <style type="text/css">
+        body {
+            background-color: #dce3ed;
+            margin-left: 20px;
+            font-family: "Helvetica Neue", Helvetica, sans-serif;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            height: 35px;
+            background-color: #4ac1f7;
+            margin: 0;
+        }
+
+        .navbar li {
+            float: left;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .navbar li a {
+            display: block;
+            padding: 8px;
+        }
+
+        table, td, th {
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+
+        table {
+            width: 100%
+        }
+
+        td, th {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <ul>
+            <li><a>Chenhao's Stock Price Subscription</a></li>
+        </ul>
+    </div>
+    <p>Greetings, </p>
+    <p>Below is the price of the stock ticker(s) you have subscribed to: </p>
+    <table>
+            <tbody>
+                <tr>
+                    <th>Stock Ticker</th>
+                    <th>Current Price</th>
+                </tr>
+                {% for sub in subscriptions %}
+                    <tr>
+                        <td>{{ sub.ticker }}</td>
+                        <td>${{ sub.current_price }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+    </table>
+    <p>To manage your subscriptions, please log in to your account <a href="https://stock-subscription.herokuapp.com">here</a>. </p>
+    <p>Best regards, <br> Chenhao Gong</p>
+</body>
+</html>

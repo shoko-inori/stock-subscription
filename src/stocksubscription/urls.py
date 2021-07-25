@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from home.views import home_view, subscribe_view, delete_view
+from mail.views import send_email_view
 from register.views import register_view
 
 urlpatterns = [
@@ -25,5 +26,6 @@ urlpatterns = [
     path('register/', register_view, name="register"),
     path('', include("django.contrib.auth.urls")),
     path('subscribe/', subscribe_view, name="subscribe"),
-    path('<int:sub_id>/unsubscribe/', delete_view, name="unsubscribe")
+    path('<int:sub_id>/unsubscribe/', delete_view, name="unsubscribe"),
+    path('<int:sub_id>/send-mail/', send_email_view, name="send_mail"),
 ]

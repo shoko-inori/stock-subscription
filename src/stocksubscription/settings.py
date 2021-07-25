@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-s+&1!)rvvg=(u9wal%-+$zlwy@ortkjlkjljkikl!2l2rzr_s6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -41,9 +41,10 @@ INSTALLED_APPS = [
     # Custom apps
     'register',
     'home',
+    'mail',
 
     # Third party apps
-    'crispy_forms'
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -131,7 +132,23 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Crispy bootstrap
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+# User authorization redirects
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/login"
+
+# Celery setup
+CELERY_BROKER_URL = \
+    'redis://:p0f3edb8dddcb982d2d1228fc093628e12f3900689c36404a1d21544bb85e0681@ec2-54-205-197-154.compute-1.amazonaws.com:24870'
+
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
+CELERY_TIMEZONE = 'US/Eastern'
+
+# AWS Simple Email Send credentials
+EMAIL_BACKEND = 'django_ses.SESBackend'
+AWS_ACCESS_KEY_ID = 'AKIAWZPSQ2H3KBA2LP5S'
+AWS_SECRET_ACCESS_KEY = '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'
