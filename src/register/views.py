@@ -12,4 +12,4 @@ def register_view(response):
         return redirect("/")
     else:
         register_form = UserCreationForm()
-    return render(response, "register.html", {"register_form": register_form})
+    return render(response, "registration/register.html", {"register_form": register_form})
