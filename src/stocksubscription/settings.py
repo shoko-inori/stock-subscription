@@ -162,5 +162,6 @@ CELERY_REDIS_BACKEND_USE_SSL = {'ssl_cert_reqs': ssl.CERT_NONE}
 
 # AWS Simple Email Send credentials
 EMAIL_BACKEND = 'django_ses.SESBackend'
-AWS_ACCESS_KEY_ID = 'AKIAWZPSQ2H3KBA2LP5S'
-AWS_SECRET_ACCESS_KEY = 'YXKz+WgMCnlt+7MhzfZR5iegh7ZR+LpTYW9Gev5K'
+# Fake AWS ID's; not going to work if you run this locally
+AWS_ACCESS_KEY_ID = 'access_key'
+AWS_SECRET_ACCESS_KEY = 'secret_key'
