@@ -10,11 +10,20 @@ def home_view(request):
         return redirect("login/")
 
     context = {"subscriptions": []}
-    for sub in request.user.subscription.all():
+
+    # Compose and make API call to fetch prices
+    all_sub = request.user.subscription.all()
+    sub_string = ""
+    for sub in all_sub:
+        sub_string = "{} {}".format(sub_string, sub.ticker)
+    yf_response = yf.Tickers(sub_string.strip())
+
+    # Render the subscription list table
+    for sub in all_sub:
         context["subscriptions"].append({
             "id": sub.id,
             "ticker": sub.ticker,
-            "current_price": yf.Ticker(sub.ticker).info["regularMarketPrice"],
+            "current_price": yf_response.tickers[sub.ticker].info["regularMarketPrice"],
             "email": sub.email
         })
     return render(request, "home.html", context)
