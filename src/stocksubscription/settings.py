@@ -41,9 +41,10 @@ INSTALLED_APPS = [
     # Custom apps
     'register',
     'home',
+    'mail',
 
     # Third party apps
-    'crispy_forms'
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
