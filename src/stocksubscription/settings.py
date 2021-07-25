@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-s+&1!)rvvg=(u9wal%-+$zlwy@ortkjlkjljkikl!2l2rzr_s6_27bfe0o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -146,10 +146,7 @@ CELERY_BROKER_URL = \
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 
-# Email send credentials
-EMAIL_HOST = 'smtp-mail.outlook.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'chenhao.stock-update@outlook.com'
-EMAIL_PASSWORD = 'gEqzuq-damby1-dokdon'
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = True
+# AWS Simple Email Send credentials
+EMAIL_BACKEND = 'django_ses.SESBackend'
+AWS_ACCESS_KEY_ID = 'AKIAWZPSQ2H3KBA2LP5S'
+AWS_SECRET_ACCESS_KEY = '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'
