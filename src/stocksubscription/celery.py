@@ -23,7 +23,7 @@ app.conf.beat_schedule = {
     'workdays_every_hour_between_9_and_5': {
         'task': 'mail.tasks.send_digest',
         'schedule': crontab(
-            day_of_week='mon, tue, wed, thu, fri',
+            day_of_week='mon,tue,wed,thu,fri',
             hour='9-5'
         )
     }
