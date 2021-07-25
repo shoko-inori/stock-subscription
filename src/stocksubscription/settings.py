@@ -83,8 +83,12 @@ WSGI_APPLICATION = 'stocksubscription.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'da6siegt092dbl',
+        'HOST': 'ec2-35-174-122-153.compute-1.amazonaws.com',
+        'PORT': 5432,
+        'USER': 'tponzksmvgdkjj',
+        'PASSWORD': 'cfb6667e06691e088434c24e9d1715e5a1e9c141e29242e80b5496ae887c558b'
     }
 }
 
