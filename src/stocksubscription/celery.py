@@ -24,7 +24,8 @@ app.conf.beat_schedule = {
         'task': 'mail.tasks.send_digest',
         'schedule': crontab(
             day_of_week='mon,tue,wed,thu,fri',
-            hour='9-5'
+            hour='9-17',
+            minute=0
         )
     }
 }
