@@ -35,7 +35,7 @@ def send_email_task(mailto, tickers):
     return None
 
 
-@shared_task()
+@shared_task
 def send_digest():
     all_sub = Subscription.objects.all()
     ticker_string = ""

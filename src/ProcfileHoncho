@@ -1,0 +1,3 @@
+web: gunicorn stocksubscription.wsgi
+worker: celery -A stocksubscription worker -l info
+beat: celery -A stocksubscription beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
